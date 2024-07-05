@@ -1,22 +1,22 @@
 import Link from "next/link";
-
+import "./One.css";
 const getData = async () => {
-  const request = await fetch("https://dummyjson.com/products?limit=3");
+  const request = await fetch("https://dummyjson.com/products");
 
   const data = await request.json();
 
   return data;
 };
-async function Home() {
+async function One() {
   const { products } = await getData();
 
   return (
-    <div className="align-elements flex ">
+    <div className="align-elements">
       {products.map((product) => {
         return (
           <Link href={`singleProduct/${product.id}`}>
-            <div className=" w-96 flex gap-10 mb-4 mt-9 " key={product.id}>
-              <div className="ml-10 card w-96 flex gap-10  bg-slate-600 text-slate-300 glass w-86">
+            <div className="mt-9 ml-26" key={product.id}>
+              <div className=" ml-28 bg-slate-700 text-slate-300 d-flex card glass w-96">
                 <figure>
                   <img src={product.thumbnail} alt="car!" className="h-56" />
                 </figure>
@@ -24,7 +24,7 @@ async function Home() {
                   <h2 className="card-title">{product.title}</h2>
                   <p>{product.description}</p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">More</button>
+                    <button className="btn btn-primary">Learn now!</button>
                   </div>
                 </div>
               </div>
@@ -36,4 +36,4 @@ async function Home() {
   );
 }
 
-export default Home;
+export default One;
