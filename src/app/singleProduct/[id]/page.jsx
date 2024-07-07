@@ -1,21 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import ronaldo from '../../../../public/ronaldo.jpg';
+
 const getData = async (id) => {
-  const request = await fetch(`https://fakestoreapi.com/products/` + id);
+  const request = await fetch(`https://dummyjson.com/products/` + id);
+
   const data = await request.json();
+
   return data;
 };
 
 async function Product({ params }) {
   const product = await getData(params.id);
-  if (!product) {
-    return (
-      <div>
-        <span className="loading loading-dots loading-lg"></span>
-      </div>
-    );
-  }
-
+  
   return (
     <div className="align-elements mt-16">
         <Link href={'/products'}>Product Page Back</Link>
@@ -23,7 +20,7 @@ async function Product({ params }) {
         <figure>
         <Image
         className="rounded-lg"
-            src={product.thumbnail} 
+            src={product.images}
             alt={product.title} 
             width={1000} 
             height={1000}
